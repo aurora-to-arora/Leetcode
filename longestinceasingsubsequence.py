@@ -9,3 +9,16 @@ class Solution:
                     lis[i]=max(lis[i], 1+lis[j])
         
         return max(lis)
+'''or'''
+class Solution:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        import bisect
+        tails=[]
+        for n in nums:
+            p = bisect.bisect_left(tails, n)
+            if p==len(tails):
+                tails.append(n)
+            else:
+                tails[p]=n
+        return len(tails)
+        
